@@ -141,3 +141,118 @@ Binary_Image Binary_Image::operator+(const Binary_Image& a_image) const {
 
 	return result_image;
 }
+
+Binary_Image Binary_Image::operator*(const bool a_b) {
+	Binary_Image result_image(x, y);
+	for (int i = 0; i < x; ++i) {
+		for (int j = 0; j < y; ++j) {
+			result_image.image[i][j] = image[i][j] && a_b;
+		}
+	}
+	return result_image;
+}
+
+Binary_Image Binary_Image::operator+(const bool a_b) {
+	Binary_Image result_image(x, y);
+	for (int i = 0; i < x; ++i) {
+		for (int j = 0; j < y; ++j) {
+			result_image.image[i][j] = image[i][j] || a_b;
+		}
+	}
+	return result_image;
+}
+
+Binary_Image Binary_Image::operator!() {
+	Binary_Image result_image(x, y);
+	for (int i = 0; i < x; ++i) {
+		for (int j = 0; j < y; ++j) {
+			result_image.image[i][j] = !image[i][j];
+		}
+	}
+	return result_image;
+}
+
+double Binary_Image::Ratio() {
+	double temp = 0, d_x = x, d_y = y;
+	for (int i = 0; i < x; ++i) {
+		for (int j = 0; j < y; ++j) {
+			if (image[i][j])
+				temp++;
+		}
+	}
+	return(temp / (d_x * d_y));
+}
+
+ostream& operator <<(ostream& os, const Binary_Image& a_image) {
+	for (int i = 0; i < a_image.x; ++i) {
+		for (int j = 0; j < a_image.y; ++j) {
+			if (a_image.image[i][j])
+				os << "\t1";
+			else
+				os << "\t.";
+		}
+		os << endl;
+	}
+	return os;
+}
+
+int Binary_Image::Get_x() const {
+	return x;
+}
+
+int Binary_Image::Get_y() const {
+	return y;
+}
+
+Binary_Image Binary_Image::operator=(const Binary_Image& a_image) {
+	x = a_image.x;
+	y = a_image.y;
+	if (x != a_image.x || y != a_image.y) {
+		if (image) {
+			for (int i = 0; i < x; ++i) {
+				delete[] image[i];
+			}
+		}
+		delete[] image;
+		image = new bool* [x];
+		for (int i = 0; i < x; ++i) {
+			image[i] = new bool[y];
+		}
+	}
+
+	for (int i = 0; i < x; ++i) {
+		for (int j = 0; j < y; ++j) {
+			a_image.image[i][j] = image[i][j];
+		}
+	}
+	return a_image;
+}
+
+bool Binary_Image::operator==(const Binary_Image& a_image) const {
+	if (x == a_image.x && y == a_image.y) {
+		for (int i = 0; i < x; ++i) {
+			for (int j = 0; j < y; ++j) {
+				if (image[i][j] == a_image.image[i][j])
+					continue;
+				else
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+Binary_Image::~Binary_Image() {
+	if (image) {
+		for (int i = 0; i < x; ++i) {
+			delete[] image[i];
+		}
+	}
+	delete[] image;
+}

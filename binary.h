@@ -14,3 +14,13 @@ public:
 	Binary_Image operator =(const Binary_Image& a_image);
 	Binary_Image operator *(const Binary_Image& a_image) const;
 	Binary_Image operator +(const Binary_Image& a_image) const;
+	Binary_Image operator *(const bool b);
+	Binary_Image operator +(const bool b);
+	Binary_Image operator !();
+	bool operator == (const Binary_Image& a_image) const;
+	double Ratio();
+	friend std::ostream& operator <<(std::ostream& os, const Binary_Image& a_image);
+	int Get_x() const;
+	int Get_y() const;
+	~Binary_Image();
+};
