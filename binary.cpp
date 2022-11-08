@@ -207,6 +207,7 @@ int Binary_Image::Get_y() const {
 Binary_Image Binary_Image::operator=(const Binary_Image& a_image) {
 	x = a_image.x;
 	y = a_image.y;
+	Binary_Image result(x, y);
 	if (x != a_image.x || y != a_image.y) {
 		if (image) {
 			for (int i = 0; i < x; ++i) {
@@ -222,6 +223,7 @@ Binary_Image Binary_Image::operator=(const Binary_Image& a_image) {
 
 	for (int i = 0; i < x; ++i) {
 		for (int j = 0; j < y; ++j) {
+			image[i][j] = a_image.image[i][j];
 			a_image.image[i][j] = image[i][j];
 		}
 	}
