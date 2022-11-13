@@ -93,9 +93,9 @@ int main()
 	Binary_Image BIC(Create_Circle());
 	cout << BIC;
 	/*cout << "Create first image\n";
-	Binary_Images BI1(Create_Image());
+	Binary_Image BI1(Create_Image());
 	cout << "Create second image\n";
-	Binary_Images BI2(Create_Image());
+	Binary_Image BI2(Create_Image());
 	cout << BI1 << "\n";
 	cout << !BI1 << "\n";
 	cout << BI1 << "\n";
