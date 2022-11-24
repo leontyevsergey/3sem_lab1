@@ -9,7 +9,7 @@ public:
 	Binary_Image();
 	Binary_Image(const int x, const int y); //width, height
 	Binary_Image(const Binary_Image& copy);
-	bool& operator()(const int coor_x, const int coor_y, const bool b); //write
+	bool& operator()(const int coor_x, const int coor_y); //write
 	const bool& operator()(const int coor_x, const int coor_y) const; //read
 	Binary_Image operator =(const Binary_Image& a_image);
 	Binary_Image operator *(const Binary_Image& a_image) const;

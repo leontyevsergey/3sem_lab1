@@ -28,7 +28,7 @@ Binary_Image Create_Image() {
 				b = true;
 			else
 				b = false;
-			tmp.operator()(i, j, b);
+			tmp(i, j) = b;
 		}
 	}
 	return tmp;
@@ -57,19 +57,19 @@ Binary_Image Create_Circle() {
 	y--;
 	for (int i = 0; i < tmp.Get_x(); i++) {
 		for (int j = 0; j < tmp.Get_y(); j++) {
-			tmp(i, j, false);
+			tmp(i, j) = false;
 		}
 	}
 	for (int i = 0; i < tmp.Get_x(); i++) {
 		for (int j = 0; j < tmp.Get_y(); j++) {
 			if (((i + radius == x) || (i - radius == x)) && ((j > y - radius) && (j < y + radius)))
-				tmp(i, j, true);
+				tmp(i, j) = true;
 		}
 	}
 	for (int i = 0; i < tmp.Get_y(); i++) {
 		for (int j = 0; j < tmp.Get_x(); j++) {
 			if (((i + radius == y) || (i - radius == y)) && ((j > x - radius) && (j < x + radius)))
-				tmp(j, i, true);
+				tmp(j, i) = true;
 		}
 	}
 	return tmp;
@@ -78,7 +78,7 @@ Binary_Image Create_Circle() {
 int main()
 {
 	bool b = true;
-	Binary_Image BI3(Create_Image());
+	/*Binary_Image BI3(Create_Image());
 	cout << BI3 << "\n";
 	Binary_Image BI4 = BI3;
 	cout << BI4 << endl;
@@ -89,22 +89,25 @@ int main()
 		std::cout << "True" << std::endl;
 	else
 		std::cout << "False" << std::endl;
-	cout << endl;
-	Binary_Image BIC(Create_Circle());
-	cout << BIC;
-	/*cout << "Create first image\n";
+	cout << endl;*/
+	cout << "Create first image\n";
 	Binary_Image BI1(Create_Image());
 	cout << "Create second image\n";
 	Binary_Image BI2(Create_Image());
-	cout << BI1 << "\n";
-	cout << !BI1 << "\n";
-	cout << BI1 << "\n";
-	cout << BI1 + BI2 << "\n";
-	cout << BI1 * BI2 << "\n";
+	cout << BI1 << endl;
+	cout << !BI1 << endl;
+	cout << BI2 << endl;
+	cout << BI1 + BI2 << endl;
+	cout << BI1 * BI2 << endl;
 	cout << "Input b: ";
 	cin >> b;
-	cout << BI1 + b << "\n";
-	cout << BI2 * b << "\n";
-	cout << BI1.Ratio() << "\n";
-	cout << BI1.Get_x() << "\t" << BI1.Get_y() << "\n";*/
+	cout << BI1 + b << endl;
+	cout << BI2 * b << endl;
+	std::cout << BI2(1, 1) << endl;
+	BI2(1, 1) = !BI2(1, 1);
+	std::cout << BI2(1, 1) << endl;
+	cout << BI1.Ratio() << endl;
+	cout << BI1.Get_x() << "\t" << BI1.Get_y() << "\n";
+	Binary_Image BIC(Create_Circle());
+	cout << BIC;
 }

@@ -36,10 +36,9 @@ Binary_Image::Binary_Image(const Binary_Image& copy)
 }
 
 
-bool& Binary_Image::operator()(const int coor_x, const int coor_y, const bool b) {
+bool& Binary_Image::operator()(const int coor_x, const int coor_y) {
 	if (coor_x > x || coor_y > y || coor_x < 0 || coor_y < 0)
 		throw "Incorrect coordinates";
-	image[coor_x][coor_y] = b;
 	return image[coor_x][coor_y];
 }
 
